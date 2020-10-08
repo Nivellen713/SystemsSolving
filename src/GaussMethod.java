@@ -12,10 +12,10 @@ public class GaussMethod {
 
         double det;
         double element;
+        int n = 2;
 
-        double x;
-        double y;
-        double z;
+        double x[] = new double[dopMatrix.length];
+        double d, s;
 
         //------------------------- Вводим матрицу -------------------------//
 
@@ -46,54 +46,31 @@ public class GaussMethod {
         det = general.determinant(testMatrix);
         System.out.println("determinant = " + det);
 
-
-        element = testMatrix[0][0];
-
-        for (int i = 0; i < 3; i++){
-            dopMatrix[i] /= element;
-            for (int j = 0; j < 3; j++){
-                testMatrix[i][j] /= element;
+        //------------- ПРЯМОЙ ХОД -------------//
+        for (int k = 0; k <= n; k++){
+            for (int j = k + 1; j <= n; j++){
+                d = testMatrix[j][k] / testMatrix[k][k];    // Умножение k-й строки на число
+                // Вычитание k-й строки из j-й строки
+                for (int i = k; i <= n; i++){
+                    testMatrix[j][i] -= d * testMatrix[k][i];
+                }
+                dopMatrix[j] -= d * dopMatrix[k];
             }
         }
-
-        for (int i = 0; i < 3; i++){
-            testMatrix[1][i] += -testMatrix[1][i] * testMatrix[0][i];
+            //------------- ОБРАТНЫЙ ХОД -------------//
+            for (int k = n; k >= 0; k--){
+                d = 0;
+                for (int j = k + 1; j <= n; j++){
+                    s = testMatrix[k][j] * x[j];    // Вычисление неизвестных
+                    d += s;
+                }
+                x[k] = (dopMatrix[k] - d) / testMatrix[k][k];
         }
-        dopMatrix[1] += -dopMatrix[1] * dopMatrix[0];
-
-        element = testMatrix[1][1];
-
-        for (int i = 0; i < 3; i++){
-            testMatrix[1][i] /= element;
-        }
-        dopMatrix[1] /= element;
-
-
-
-
-        for (int i = 0; i < 3; i++){
-            testMatrix[2][i] += -testMatrix[2][i] * testMatrix[0][i];
-        }
-        dopMatrix[2] += -dopMatrix[2] * dopMatrix[0];
-
-        element = testMatrix[1][2];
-
-        for (int i = 0; i < 3; i++){
-            testMatrix[2][i] /= element;
-        }
-        dopMatrix[2] /= element;
-
-
-        element = testMatrix[2][2];
-
-        for (int i = 0; i < 3; i++){
-            testMatrix[2][i] /= element;
-        }
-        dopMatrix[2] /= element;
-
+            for (int i = 0; i < x.length; i++){
+                System.out.print(x[i] + " ");
+            }
+        System.out.println('\n');
         general.showMatrix(testMatrix, dopMatrix);
-
-
 
     }
 }
