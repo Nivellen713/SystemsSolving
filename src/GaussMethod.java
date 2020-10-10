@@ -6,15 +6,15 @@ public class GaussMethod {
         General general = new General();
         Scanner scanner = new Scanner(System.in);
 
-        double[][] testMatrix = {{3, 2, -5}, {2, -1, 3}, {1, 2, -1}}; // коэффициенты при неизвестных
-        double[][] rememberMatrix = new double[3][3];
-        double[] dopMatrix = {-1, 13, 9};   // свободные члены СЛАУ
+        double[][] testMatrix = {{1, -1, 3, 1}, {4, -1, 5, 4}, {2, -2, 4, 1}, {1, -4, 5, -1}}; // коэффициенты при неизвестных
+        double[][] rememberMatrix = new double[4][4];
+        double[] dopMatrix = {5, 4, 6, 3};   // свободные члены СЛАУ
 
         double det;
         double element;
-        int n = 2;
+        int n = 3;
 
-        double x[] = new double[dopMatrix.length];
+        double[] x = new double[dopMatrix.length];
         double d, s;
 
         //------------------------- Вводим матрицу -------------------------//
@@ -66,11 +66,9 @@ public class GaussMethod {
                 }
                 x[k] = (dopMatrix[k] - d) / testMatrix[k][k];
         }
-            for (int i = 0; i < x.length; i++){
-                System.out.print(x[i] + " ");
-            }
-        System.out.println('\n');
-        general.showMatrix(testMatrix, dopMatrix);
-
+        System.out.println("\nРешение:");
+        for (double v : x) {
+            System.out.print(v + " ");
+        }
     }
 }
