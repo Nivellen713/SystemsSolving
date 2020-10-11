@@ -22,16 +22,16 @@ public class MatrixCreator {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите количество неизвестных: ");
         int amountOfUnknowns = scanner.nextInt();
-        for (int j = 1; j <= matrix.getVerticalSize(); j++) {
-            System.out.println("Введите " + j + " строку: ");
+        for (int j = 0; j < matrix.getVerticalSize(); j++) {
+            System.out.println("Введите " + (j + 1) + " строку: ");
             for (int i = 0; i < matrix.getHorizontalSize(); i++){
-                int value = scanner.nextInt();
+                double value = scanner.nextDouble();
                 matrix.setElement(i, j, value);
             }
         }
         System.out.println("Введите свободные члены: ");
-        for (int i = 0; i < amountOfUnknowns; i++){
-            int value = scanner.nextInt();
+        for (int i = 0; i < dopMatrix.getSize(); i++){
+            double value = scanner.nextDouble();
             dopMatrix.setElement(i, value);
         }
     }

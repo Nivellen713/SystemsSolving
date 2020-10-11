@@ -11,6 +11,10 @@ public class LinearMatrix {
         array = new double[amount];
     }
 
+    public int getSize() {
+        return array.length;
+    }
+
     public double getElement(int i) throws MatrixException {
         if (checkRange(i)) {
             return array[i];
@@ -18,15 +22,13 @@ public class LinearMatrix {
         throw new MatrixException();
     }
     public void setElement(int i, double value) throws MatrixException {
-        if (checkRange(i)) {
-            array[i] = value;
-        }
-        throw new MatrixException();
+        if (checkRange(i)) array[i] = value;
+        else throw new MatrixException();
     }
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("\nFreeMembers : " + array.length);
+        StringBuilder s = new StringBuilder("\nLinear Matrix : ");
             for (double value : array) {
                 s.append(value + " ");
         }
@@ -34,11 +36,7 @@ public class LinearMatrix {
     }
 
     private boolean checkRange(int i){
-        if (i >= 0 && i < array.length){
-            return true;
-        } else {
-            return false;
-        }
+        return i >= 0 && i < array.length;
     }
 
 }
