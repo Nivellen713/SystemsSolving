@@ -43,7 +43,11 @@ public class Runner {
             dopMatrix.setElement(2, 6);
             dopMatrix.setElement(3, 3);
 
-            answers = new GaussMethod(matrix, dopMatrix, answers).solving();
+//            answers = new GaussMethod(matrix, dopMatrix, answers).solving();
+//            System.out.println("Решение: " + answers);
+//
+//            System.out.println('\n');
+            answers = new CramerMethod(matrix, dopMatrix, answers).solving();
             System.out.println("Решение: " + answers);
         } catch (MatrixException ex){
             System.err.println("Error of creating matrix " + ex);

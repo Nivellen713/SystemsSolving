@@ -5,20 +5,20 @@ public class GaussMethod {
 
     private Matrix matrix;
     private LinearMatrix dopMatrix;
-    private LinearMatrix solutions;
+    private LinearMatrix answers;
 
     private double d;
 
-    public GaussMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix solutions){
+    public GaussMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers){
         this.matrix = matrix;
         this.dopMatrix = dopMatrix;
-        this.solutions = solutions;
+        this.answers = answers;
     }
 
     public LinearMatrix solving() throws MatrixException {
         straightRun();
         reverse();
-        return solutions;
+        return answers;
     }
 
     private void straightRun() throws MatrixException { // ПРЯМОЙ ХОД
@@ -42,11 +42,11 @@ public class GaussMethod {
         for (int k = n - 1; k >= 0; k--){
             d = 0;
             for (int j = k + 1; j <= n - 1; j++){
-                double s = matrix.getElement(k, j) * solutions.getElement(j);    // Вычисление неизвестных. (4)
+                double s = matrix.getElement(k, j) * answers.getElement(j);    // Вычисление неизвестных. (4)
                 d += s; // (4)
             }
             double elem = (dopMatrix.getElement(k) - d) / matrix.getElement(k, k);   // (4)
-            solutions.setElement(k, elem);
+            answers.setElement(k, elem);
         }
     }
 }

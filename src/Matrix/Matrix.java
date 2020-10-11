@@ -42,10 +42,6 @@ public class Matrix {
 
     // проверка возможности выхода за пределы матрицы
     private boolean checkRange(int i, int j){
-        if (i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length){
-            return true;
-        } else {
-            return false;
-        }
+        return i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length;
     }
 }

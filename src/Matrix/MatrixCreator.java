@@ -18,6 +18,17 @@ public class MatrixCreator {
         }
     }
 
+    public void fillRandomized (LinearMatrix t, int start, int end) {
+        for (int i = 0; i < t.getSize(); i++){
+            try {
+                double value = (int)(Math.random() * (end - start) + start);
+                t.setElement(i, value);
+            } catch (MatrixException e){
+                e.getMessage();
+            }
+        }
+    }
+
     public void personalVariables (Matrix matrix, LinearMatrix dopMatrix) throws MatrixException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите количество неизвестных: ");
