@@ -47,6 +47,7 @@ public class Runner {
 //            System.out.println("Решение: " + answers);
 //
 //            System.out.println('\n');
+
             answers = new CramerMethod(matrix, dopMatrix, answers).solving();
             System.out.println("Решение: " + answers);
         } catch (MatrixException ex){

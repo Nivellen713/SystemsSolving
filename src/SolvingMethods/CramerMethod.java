@@ -1,5 +1,4 @@
 package SolvingMethods;
-
 import Matrix.*;
 
 public class CramerMethod {
@@ -7,7 +6,7 @@ public class CramerMethod {
     private Matrix matrix;
     private Matrix rememberMatrix;
     private LinearMatrix dopMatrix;
-    private LinearMatrix deltas;
+    private double[] deltas;
     private LinearMatrix answers;
 
     public CramerMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
@@ -15,15 +14,10 @@ public class CramerMethod {
         this.dopMatrix = dopMatrix;
         this.answers = answers;
 
-        this.rememberMatrix = matrix;
-        try {
-            this.deltas = new LinearMatrix(answers.getSize());
-        } catch (MatrixException ex) {
-            System.err.println(ex.getMessage());
-        }
     }
 
     //---------------- Вычисляем детерминант матрицы с заменой --------------//
+
     private double detOfElements(int k) throws MatrixException {
         for (int i = 0; i < dopMatrix.getSize(); i++) {
             matrix.setElement(i, k, dopMatrix.getElement(i));
@@ -32,18 +26,27 @@ public class CramerMethod {
     }
 
     private void detOfMinors() throws MatrixException {
-        for (int i = 0; i < deltas.getSize(); i++) {
+        for (int i = 0; i < deltas.length; i++) {
             double det = detOfElements(i);
-            deltas.setElement(i, det);
-            new Calculate().returnValues(matrix, rememberMatrix);
+            deltas[i] = det;
+            matrix = new Calculate().returnValues(matrix, rememberMatrix);
         }
     }
 
     public LinearMatrix solving() throws MatrixException {
+        try {
+            rememberMatrix = new Matrix(dopMatrix.getSize(), dopMatrix.getSize());
+            rememberMatrix = new Calculate().returnValues(rememberMatrix, matrix);
+        } catch (MatrixException ex){
+            ex.getMessage();
+        }
+        this.deltas = new double[dopMatrix.getSize()];
+
         detOfMinors();
         double det = new Calculate().determinant(matrix);
         for (int i = 0; i < answers.getSize(); i++) {
-            answers.setElement(i, deltas.getElement(i) / det);
+            double value = deltas[i] / det;
+            answers.setElement(i, value);
         }
         return answers;
     }

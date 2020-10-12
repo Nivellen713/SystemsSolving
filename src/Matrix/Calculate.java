@@ -27,7 +27,7 @@ public class Calculate {
         return det;
     }
 
-    public void returnValues(Matrix to, Matrix from) {
+    public Matrix returnValues(Matrix to, Matrix from) {
         try {
             for (int i = 0; i < to.getHorizontalSize(); i++) {
                 for (int j = 0; j < to.getVerticalSize(); j++) {
@@ -37,5 +37,6 @@ public class Calculate {
         } catch (MatrixException ex){
             System.out.println(ex.getMessage());
         }
+        return to;
     }
 }
