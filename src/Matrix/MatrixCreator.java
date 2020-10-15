@@ -31,8 +31,6 @@ public class MatrixCreator {
 
     public void personalVariables (Matrix matrix, LinearMatrix dopMatrix) throws MatrixException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter amount of unknowns: ");
-        int amountOfUnknowns = scanner.nextInt();
         for (int j = 0; j < matrix.getVerticalSize(); j++) {
             System.out.println("Enter " + (j + 1) + " line: ");
             for (int i = 0; i < matrix.getHorizontalSize(); i++){
