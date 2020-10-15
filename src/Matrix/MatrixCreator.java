@@ -31,16 +31,16 @@ public class MatrixCreator {
 
     public void personalVariables (Matrix matrix, LinearMatrix dopMatrix) throws MatrixException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите количество неизвестных: ");
+        System.out.println("Enter amount of unknowns: ");
         int amountOfUnknowns = scanner.nextInt();
         for (int j = 0; j < matrix.getVerticalSize(); j++) {
-            System.out.println("Введите " + (j + 1) + " строку: ");
+            System.out.println("Enter " + (j + 1) + " line: ");
             for (int i = 0; i < matrix.getHorizontalSize(); i++){
                 double value = scanner.nextDouble();
                 matrix.setElement(i, j, value);
             }
         }
-        System.out.println("Введите свободные члены: ");
+        System.out.println("Enter free members: ");
         for (int i = 0; i < dopMatrix.getSize(); i++){
             double value = scanner.nextDouble();
             dopMatrix.setElement(i, value);
