@@ -23,6 +23,7 @@ public class Matrix {
         }
         throw new MatrixException();
     }
+
     public void setElement(int i, int j, double value) throws MatrixException {
         if (checkRange(i, j)) matrix[i][j] = value;
         else throw new MatrixException();
