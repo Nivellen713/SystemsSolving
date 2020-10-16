@@ -55,7 +55,7 @@ public class Runner {
 //            }
 
             new LowerUpper(matrix, dopMatrix, answers).solving();
-            //new Calculate().multiply(Matrix, );
+            new Calculate().multiply(matrix, matrix, matrix);
 
             System.out.println("Solve: " + answers);
         } catch (MatrixException ex) {
