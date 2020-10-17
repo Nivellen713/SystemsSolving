@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите порядок матрицы: ");
+        System.out.print("Enter the order of the matrix: ");
         int n = scanner.nextInt();
 //        int n = 4;
         try {
