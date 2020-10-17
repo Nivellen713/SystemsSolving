@@ -26,6 +26,20 @@ public class Calculate {
         }
         return det;
     }
+    
+        public Matrix multiplyMatrix (Matrix matrixFirst, Matrix matrixSecond) throws MatrixException{
+        Matrix multipliedMatrix = new Matrix(
+            matrixFirst.getVerticalSize(), matrixFirst.getHorizontalSize());
+        for (int i = 0; i < multipliedMatrix.getHorizontalSize(); i++){
+            for (int j = 0; j < multipliedMatrix.getHorizontalSize(); j++){
+                double a = matrixFirst.getElement(i, j);
+                double b = matrixSecond.getElement(i, j);
+                double c = a*b;
+                multipliedMatrix.setElement(i, j, c);
+            }
+        }
+        return multipliedMatrix;
+    }
 
     public Matrix returnValues(Matrix to, Matrix from) {
         try {
