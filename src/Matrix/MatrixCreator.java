@@ -33,8 +33,10 @@ public class MatrixCreator {
         Scanner scanner = new Scanner(System.in);
         for (int j = 0; j < matrix.getVerticalSize(); j++) {
             System.out.println("Enter " + (j + 1) + " line: ");
+            String str = scanner.nextLine();
+            String[] values = str.split(" ");
             for (int i = 0; i < matrix.getHorizontalSize(); i++){
-                double value = scanner.nextDouble();
+                double value = Double.parseDouble(values[i]);
                 matrix.setElement(i, j, value);
             }
         }
