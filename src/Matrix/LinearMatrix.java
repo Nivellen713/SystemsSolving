@@ -1,5 +1,7 @@
 package Matrix;
 
+import Assay.MatrixException;
+
 public class LinearMatrix {
     private double[] array;
 
@@ -30,7 +32,7 @@ public class LinearMatrix {
     public String toString() {
         StringBuilder s = new StringBuilder("\nLinear Matrix : ");
             for (double value : array) {
-                s.append(value + " ");
+                s.append(String.format("%.3g", value)).append(" ");
         }
         return s.toString();
     }

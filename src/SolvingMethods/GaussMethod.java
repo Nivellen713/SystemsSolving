@@ -1,21 +1,20 @@
 package SolvingMethods;
+import Assay.MatrixException;
 import Matrix.*;
 
-public class GaussMethod {
+public class GaussMethod extends Solver {
 
-    private Matrix matrix;
-    private LinearMatrix dopMatrix;
-    private LinearMatrix answers;
-
+    /** Поле d для хранения промежуточных результатов, используемых в нескольких методах
+     *
+     */
     private double d;
 
-    public GaussMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers){
-        this.matrix = matrix;
-        this.dopMatrix = dopMatrix;
-        this.answers = answers;
+    public GaussMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
+        super(matrix, dopMatrix, answers);
     }
 
-    public LinearMatrix solving() throws MatrixException {
+
+    public LinearMatrix solve() throws MatrixException {
         straightRun();
         reverse();
         return answers;

@@ -1,7 +1,7 @@
-package Matrix;
+package Assay;
 
 public class MatrixException extends Exception {
-    MatrixException(){
+    public MatrixException(){
         super();
     }
 }

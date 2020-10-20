@@ -1,5 +1,7 @@
 package Matrix;
 
+import Assay.MatrixException;
+
 public class Calculate {
 
     public double determinant(Matrix matrix) throws MatrixException {
@@ -27,32 +29,19 @@ public class Calculate {
         return det;
     }
     
-        public Matrix multiplyMatrix (Matrix matrixFirst, Matrix matrixSecond) throws MatrixException{
+        public Matrix multiply (Matrix matrixFirst, Matrix matrixSecond) throws MatrixException{
         Matrix multipliedMatrix = new Matrix(
             matrixFirst.getVerticalSize(), matrixFirst.getHorizontalSize());
-        for (int i = 0; i < multipliedMatrix.getHorizontalSize(); i++){
-            for (int j = 0; j < multipliedMatrix.getHorizontalSize(); j++){
-                double a = matrixFirst.getElement(i, j);
-                double b = matrixSecond.getElement(i, j);
-                double c = a*b;
-                multipliedMatrix.setElement(i, j, c);
+        for (int i = 0; i < multipliedMatrix.getHorizontalSize(); i++) {
+            for (int j = 0; j < multipliedMatrix.getHorizontalSize(); j++) {
+                double a = multipliedMatrix.getElement(i, j);
+                for (int k = 0; k < multipliedMatrix.getHorizontalSize(); k++) {
+                    a += matrixFirst.getElement(i, k) * matrixSecond.getElement(k, j);
+                }
+                multipliedMatrix.setElement(i, j, a);
             }
         }
         return multipliedMatrix;
-    }
-
-    public void multiply(Matrix matrix, Matrix secondMatrix, Matrix multiplied) throws MatrixException{
-        for(int i = 0; i < matrix.getVerticalSize(); i++) {
-            for (int j = 0; j < matrix.getVerticalSize(); j++) {
-                for (int k = 0; k < matrix.getVerticalSize(); k++) {
-                    double a = matrix.getElement(i, k);
-                    double b = secondMatrix.getElement(k, j);
-                    double c = multiplied.getElement(i, j);
-                    c += a * b;
-                    multiplied.setElement(i, j, c);
-                }
-            }
-        }
     }
 
     public Matrix returnValues(Matrix to, Matrix from) {

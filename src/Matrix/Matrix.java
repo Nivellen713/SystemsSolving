@@ -1,5 +1,7 @@
 package Matrix;
 
+import Assay.MatrixException;
+
 public class Matrix {
     private double[][] matrix;
     public Matrix(int line, int column) throws MatrixException {
@@ -34,7 +36,7 @@ public class Matrix {
         StringBuilder s = new StringBuilder("\nMatrix : " + matrix.length + "x" + matrix[0].length + "\n");
         for (double [] row : matrix){
             for (double value : row) {
-                s.append(value + " ");
+                s.append(String.format("%.3g", value)).append(" ");
             }
             s.append("\n");
         }

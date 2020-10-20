@@ -1,19 +1,14 @@
 package SolvingMethods;
+import Assay.MatrixException;
 import Matrix.*;
 
-public class CramerMethod {
+public class CramerMethod extends Solver{
 
-    private Matrix matrix;
     private Matrix rememberMatrix;
-    private LinearMatrix dopMatrix;
     private double[] deltas;
-    private LinearMatrix answers;
 
     public CramerMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
-        this.matrix = matrix;
-        this.dopMatrix = dopMatrix;
-        this.answers = answers;
-
+        super(matrix, dopMatrix, answers);
     }
 
     //---------------- Вычисляем детерминант матрицы с заменой --------------//
@@ -33,7 +28,7 @@ public class CramerMethod {
         }
     }
 
-    public LinearMatrix solving() throws MatrixException {
+    public LinearMatrix solve() throws MatrixException {
         try {
             rememberMatrix = new Matrix(dopMatrix.getSize(), dopMatrix.getSize());
             rememberMatrix = new Calculate().returnValues(rememberMatrix, matrix);
