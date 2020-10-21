@@ -15,11 +15,9 @@ import Matrix.*;
  *
  * Формулы для решения приобразованной системы.
  *      Решение системы Ly = f, вычисление вектора решения y.
- *          y_1 = f_1 / l_11        (5)
- *          y_i = (1/l_ii) * (f_i - sum{k=1,..,i-1}[l_ik * y_k]),   i=2,3,..,n     (6)
+ *          y_i = (1/l_ii) * (f_i - sum{k=1,..,i-1}[l_ik * y_k]),   i=1,2,..,n     (5)
  *      Решение системы Ux = y.
- *          x_n = y_n       (7)
- *          x_i = y_i - sum{k=i+1,..,n}[u_ik * x_k]),   i=n-1,n-2,..,1     (8)
+ *          x_i = (y_i - sum{k=i+1,..,n}[u_ik * x_k])) / u_kk,   i=n-1,n-2,..,1     (6)
  */
 
 public class LowerUpper extends Solver {
@@ -49,30 +47,35 @@ public class LowerUpper extends Solver {
 
         decomposition();
 
+        System.out.println("L * U : " + new Calculate().multiply(matrixL, matrixU));
+
         LinearMatrix y = new LinearMatrix(answers.getSize());
 
-        y.setElement(0,
-                dopMatrix.getElement(0) / matrixL.getElement(0, 0));      // формула (5)
-
-
-        for (int i = 1; i < y.getSize(); i++) {
+        for (int i = 0; i < y.getSize(); i++) {
             double sum = 0;
-            for (int j = 0; j < i - 1; j++) {
+            for (int j = 0; j <= i - 1; j++) {
                 // Прямая подстановка. Находим вектор решения y
-                sum += matrixL.getElement(i, j) * y.getElement(j);      // формула (6)
+                double a = matrixL.getElement(i, j);
+                double b = y.getElement(j);
+                sum += a * b;      // формула (5)
             }
-            y.setElement(i,
-                    (dopMatrix.getElement(i) - sum) / matrixL.getElement(i, i));        // формула (6)
+            double value = (dopMatrix.getElement(i) - sum) / matrixL.getElement(i, i);      // формула (5)
+            y.setElement(i, value);
         }
 
-        answers.setElement(answers.getSize() - 1, y.getElement(y.getSize() - 1));      // формула (7)
-        for (int i = y.getSize() - 2; i >= 0; i--) {
+        System.out.println("L " + matrixL);
+        System.out.println("Y " + y);
+        System.out.println("\tCorrect Y: " + "5,00 -16,0 -4,00 -8,00");
+
+        for (int i = y.getSize() - 1; i >= 0; i--) {
             double sum = 0;
             for (int j = i + 1; j < answers.getSize(); j++) {
-                sum += matrixU.getElement(i, j) * answers.getElement(j);      // формула (8)
+                sum += matrixU.getElement(i, j) * answers.getElement(j);      // формула (6)
             }
-            answers.setElement(i, y.getElement(i) - sum);       // формула (8)
+            answers.setElement(i, (y.getElement(i) - sum) / matrixU.getElement(i,i));       // формула (6)
         }
+
+        System.out.println("U " + matrixU);
 
         return answers;
     }
