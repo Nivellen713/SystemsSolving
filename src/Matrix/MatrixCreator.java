@@ -49,7 +49,7 @@ public class MatrixCreator {
         }
     }
     
-        public void personalVariables (Matrix matrix)throws MatrixException {
+        public void personalVariables (Matrix matrix) throws MatrixException {
         Scanner scanner = new Scanner(System.in);
         for (int j = 0; j < matrix.getVerticalSize(); j++) {
             System.out.println("Enter " + (j + 1) + " line: ");
@@ -61,5 +61,4 @@ public class MatrixCreator {
             }
         }
     }
-    
 }

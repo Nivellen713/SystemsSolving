@@ -1,14 +1,21 @@
-package SolvingMethods;
+package SolvingMethods.DirectMethods;
 import Assay.MatrixException;
 import Matrix.*;
 
-public class CramerMethod extends Solver{
+public class CramerMethod extends Solver {
 
     private Matrix rememberMatrix;
     private double[] deltas;
 
+    public Matrix matrix;
+    public LinearMatrix dopMatrix;
+    public LinearMatrix answers;
+
     public CramerMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
         super(matrix, dopMatrix, answers);
+        this.matrix = matrix;
+        this.dopMatrix = dopMatrix;
+        this.answers = answers;
     }
 
     //---------------- Вычисляем детерминант матрицы с заменой --------------//

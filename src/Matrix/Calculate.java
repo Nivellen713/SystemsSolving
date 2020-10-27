@@ -28,13 +28,13 @@ public class Calculate {
         }
         return det;
     }
-    
-        public Matrix multiply (Matrix matrixFirst, Matrix matrixSecond) throws MatrixException{
+
+    public Matrix multiply(Matrix matrixFirst, Matrix matrixSecond) throws MatrixException {
         Matrix multipliedMatrix = new Matrix(
-            matrixFirst.getVerticalSize(), matrixFirst.getHorizontalSize());
-        for (int i = 0; i < multipliedMatrix.getHorizontalSize(); i++) {
+                matrixFirst.getHorizontalSize(), matrixFirst.getVerticalSize());
+        for (int i = 0; i < multipliedMatrix.getVerticalSize(); i++) {
             for (int j = 0; j < multipliedMatrix.getHorizontalSize(); j++) {
-                double a = multipliedMatrix.getElement(i, j);
+                double a = 0;
                 for (int k = 0; k < multipliedMatrix.getHorizontalSize(); k++) {
                     a += matrixFirst.getElement(i, k) * matrixSecond.getElement(k, j);
                 }
@@ -44,6 +44,16 @@ public class Calculate {
         return multipliedMatrix;
     }
 
+    public Matrix transposition(Matrix matrix) throws MatrixException {
+        Matrix transpositionMatrix = new Matrix(matrix.getHorizontalSize(), matrix.getVerticalSize());
+        for (int i = 0; i < matrix.getHorizontalSize(); i++) {
+            for (int j = 0; j < matrix.getVerticalSize(); j++) {
+                transpositionMatrix.setElement(j, i, matrix.getElement(i, j));
+            }
+        }
+        return transpositionMatrix;
+    }
+
     public Matrix returnValues(Matrix to, Matrix from) {
         try {
             for (int i = 0; i < to.getHorizontalSize(); i++) {
@@ -51,7 +61,7 @@ public class Calculate {
                     to.setElement(i, j, from.getElement(i, j));
                 }
             }
-        } catch (MatrixException ex){
+        } catch (MatrixException ex) {
             System.out.println(ex.getMessage());
         }
         return to;

@@ -1,10 +1,15 @@
 import Assay.MatrixException;
 import Matrix.*;
-import SolvingMethods.*;
+import SolvingMethods.DecompositionMethods.LowerUpper;
+import SolvingMethods.DecompositionMethods.SquareRoot;
+import SolvingMethods.DirectMethods.CramerMethod;
+import SolvingMethods.DirectMethods.GaussMethod;
+import SolvingMethods.DirectMethods.RotationMethod;
 
 public class Test {
     public static void main(String[] args) {
-        int n = 4;
+//        int n = 4;
+        int n = 3;
         try {
             Matrix matrix = new Matrix(n, n);
             LinearMatrix dopMatrix = new LinearMatrix(n);
@@ -35,16 +40,17 @@ public class Test {
             dopMatrix.setElement(2, 6);
             dopMatrix.setElement(3, 3);
 
+
             System.out.print("Your matrix: " + matrix);
             System.out.println("Dop matrix: " + dopMatrix);
 
-            answers = new LowerUpper(matrix, dopMatrix, answers).solve();
+            answers = new RotationMethod(matrix, dopMatrix, answers).solve();
             System.out.println("\nTest solution: " + answers);
 
             System.out.println("\nCorrect solution: " + "9,00 18,0 10,0 -16,0");
 
         } catch (MatrixException ex) {
-            System.err.println("Error of creating matrix " + ex);
+            System.err.println("Error Errorыч said: " + '\"' + ex.getMessage() + '\"');
         }
     }
 }

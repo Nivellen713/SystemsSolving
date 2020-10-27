@@ -1,4 +1,4 @@
-package SolvingMethods;
+package SolvingMethods.DirectMethods;
 import Assay.MatrixException;
 import Matrix.*;
 
@@ -9,8 +9,15 @@ public class GaussMethod extends Solver {
      */
     private double d;
 
+    public Matrix matrix;
+    public LinearMatrix dopMatrix;
+    public LinearMatrix answers;
+
     public GaussMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
         super(matrix, dopMatrix, answers);
+        this.matrix = matrix;
+        this.dopMatrix = dopMatrix;
+        this.answers = answers;
     }
 
 
