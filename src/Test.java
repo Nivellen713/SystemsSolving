@@ -1,15 +1,12 @@
 import Assay.MatrixException;
 import Matrix.*;
-import SolvingMethods.DecompositionMethods.LowerUpper;
-import SolvingMethods.DecompositionMethods.SquareRoot;
-import SolvingMethods.DirectMethods.CramerMethod;
-import SolvingMethods.DirectMethods.GaussMethod;
-import SolvingMethods.DirectMethods.RotationMethod;
+import SolvingMethods.DecompositionMethods.LowerUpperMethod;
+import SolvingMethods.DecompositionMethods.RotationMethod;
+import SolvingMethods.DecompositionMethods.SquareRootMethod;
 
 public class Test {
     public static void main(String[] args) {
-//        int n = 4;
-        int n = 3;
+        int n = 4;
         try {
             Matrix matrix = new Matrix(n, n);
             LinearMatrix dopMatrix = new LinearMatrix(n);
@@ -44,7 +41,7 @@ public class Test {
             System.out.print("Your matrix: " + matrix);
             System.out.println("Dop matrix: " + dopMatrix);
 
-            answers = new RotationMethod(matrix, dopMatrix, answers).solve();
+            answers = new LowerUpperMethod(matrix, dopMatrix, answers).solve();
             System.out.println("\nTest solution: " + answers);
 
             System.out.println("\nCorrect solution: " + "9,00 18,0 10,0 -16,0");

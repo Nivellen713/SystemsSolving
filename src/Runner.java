@@ -1,7 +1,7 @@
 import Assay.MatrixException;
 import Matrix.*;
-import SolvingMethods.DecompositionMethods.LowerUpper;
-import SolvingMethods.DecompositionMethods.SquareRoot;
+import SolvingMethods.DecompositionMethods.LowerUpperMethod;
+import SolvingMethods.DecompositionMethods.SquareRootMethod;
 import SolvingMethods.DirectMethods.CramerMethod;
 import SolvingMethods.DirectMethods.GaussMethod;
 
@@ -22,12 +22,15 @@ public class Runner {
             System.out.print("Your matrix: " + matrix);
             System.out.println("Dop matrix: " + dopMatrix);
 
-            System.out.println("Choose a solution method." +
-                    "\nCramer" +
-                    "\nGauss" +
-                    "\nLower Upper (LU) decomposition" +
-                    "\nSquare root method (Cholesky shame)");
-            String solutionMethod = scanner.nextLine();
+            Scanner scanner1 = new Scanner(System.in);
+
+            System.out.println("\nChoose a solution method: " +
+                    "\n---Cramer" +
+                    "\n---Gauss" +
+                    "\n---Lower Upper (LU) decomposition" +
+                    "\n---Square root method (Cholesky shame)");
+
+            String solutionMethod = scanner1.nextLine();
             solutionMethod = solutionMethod.toLowerCase();
 
             switch (solutionMethod) {
@@ -42,7 +45,7 @@ public class Runner {
                 case "lu":
                 case "lower upper":
                 case "lower upper decomposition":
-                    answers = new LowerUpper(matrix, dopMatrix, answers).solve();
+                    answers = new LowerUpperMethod(matrix, dopMatrix, answers).solve();
                     break;
                 case "square root":
                 case "sr":
@@ -50,7 +53,7 @@ public class Runner {
                     System.out.println("NOTICE\nThis method just for symmetric matrix" +
                             "\nIn case of entering a matrix of non-symmetric type" +
                             "\nThe answer may be incorrect");
-                    answers = new SquareRoot(matrix, dopMatrix, answers).solve();
+                    answers = new SquareRootMethod(matrix, dopMatrix, answers).solve();
                     break;
                 default:
                     System.out.println("i don't know such a method");

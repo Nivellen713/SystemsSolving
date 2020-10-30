@@ -17,7 +17,7 @@ import Matrix.*;
  *          x_i = [y_i - sum{k=i+1,..,n}[u_ik * x_k]]) / u_ii,   i=n-1,n-2,..,1     (4)
  */
 
-public class SquareRoot extends Solver {
+public class SquareRootMethod extends Solver {
 
     private Matrix matrix;
     private LinearMatrix dopMatrix;
@@ -31,7 +31,7 @@ public class SquareRoot extends Solver {
     private Matrix matrixU;
     private Matrix matrixUtran;
 
-    public SquareRoot(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
+    public SquareRootMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
         super(matrix, dopMatrix, answers);
         this.matrix = matrix;
         this.dopMatrix = dopMatrix;

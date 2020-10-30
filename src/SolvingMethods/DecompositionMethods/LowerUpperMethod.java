@@ -20,22 +20,22 @@ import Matrix.*;
  *          x_i = (y_i - sum{k=i+1,..,n}[u_ik * x_k])) / u_ii,   i=n-1,n-2,..,1     (6)
  */
 
-public class LowerUpper extends Solver {
+public class LowerUpperMethod extends Solver {
 
     /**
      * Поле matrixL Сохраняет историю нормировок и вычитаний в процессе исключения неизвестных по методу Гаусса
      * Поле matrixU представляет эквивалентный вид исходной системы, который она приобретает по завершению процесса исключения
      */
 
-    private Matrix matrixL;
-    private Matrix matrixU;
+    Matrix matrixL;
+    Matrix matrixU;
 
-    private Matrix matrix;
-    private LinearMatrix dopMatrix;
-    private LinearMatrix answers;
+    Matrix matrix;
+    LinearMatrix dopMatrix;
+    LinearMatrix answers;
 
 
-    public LowerUpper(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
+    public LowerUpperMethod(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
         super(matrix, dopMatrix, answers);
         this.matrix = matrix;
         this.dopMatrix = dopMatrix;

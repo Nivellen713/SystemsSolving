@@ -3,16 +3,16 @@ package SolvingMethods.DecompositionMethods;
 import Assay.MatrixException;
 import Matrix.*;
 
-abstract public class Solver {
+abstract class Solver {
 
-    private Matrix matrixL;
-    private Matrix matrixU;
+    Matrix matrixL;
+    Matrix matrixU;
 
-    private Matrix matrix;
-    private LinearMatrix dopMatrix;
-    private LinearMatrix answers;
+    Matrix matrix;
+    LinearMatrix dopMatrix;
+    LinearMatrix answers;
 
-    public Solver(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
+    Solver(Matrix matrix, LinearMatrix dopMatrix, LinearMatrix answers) {
         this.matrix = matrix;
         this.dopMatrix = dopMatrix;
         this.answers = answers;
@@ -24,6 +24,6 @@ abstract public class Solver {
         }
     }
 
-    public abstract void decomposition() throws MatrixException;
-    public abstract LinearMatrix solve() throws MatrixException;
+    abstract void decomposition() throws MatrixException;
+    abstract LinearMatrix solve() throws MatrixException;
 }
